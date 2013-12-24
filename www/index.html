@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ionic Seed</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- ionic css -->
+    <link href="css/ionic.css" rel="stylesheet">
+
+    <!-- your app's css -->
+    <link href="css/app.css" rel="stylesheet">
+
+    <!-- ionic/angularjs scripts -->
+    <script src="js/ionic.js"></script>
+    <script src="js/angular/angular.js"></script>
+    <script src="js/angular/angular-animate.js"></script>
+    <script src="js/angular/angular-route.js"></script>
+    <script src="js/angular/angular-touch.js"></script>
+    <script src="js/angular/angular-sanitize.js"></script>
+    <script src="js/ionic-angular.js"></script>
+
+    <!-- cordova script -->
+    <script src="cordova.js"></script>
+
+    
+  </head>
+
+  <!-- 'starter' is the name of this angular module (js/app.js)-->
+  <body ng-app="starter">
+    <div ng-controller="MenuCtrl">
+      <side-menus>
+        <fade-bar></fade-bar>
+        <pane side-menu-content>
+          <header class="bar bar-header bar-positive">
+            <button class="button button-icon" ng-click="openLeft()"><i class="icon ion-navicon"></i></button>
+            <h1 class="title">電視連續劇</h1>
+          </header>
+          <content has-header="true" padded="true">
+
+            <div ng-repeat="drama in dramas">
+            <div class="list card">
+              <div class="item item-avatar">
+                <img src="http://files.softicons.com/download/system-icons/windows-8-metro-invert-icons-by-dakirby309/png/256x256/Folders%20&%20OS/My%20Video%20apps.png">
+                <h2>{{drama.name}}</h2>
+                <p>{{drama.actors}}</p>
+              </div>
+
+              <div class="item item-body">
+                <img class="full-image" src="{{drama.poster_url}}">
+                <p>
+                  {{drama.introduction.substring(0,100)+'...'}}
+                </p>
+              </div>
+
+              <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" href="#">
+                  <i class="icon ion-star"></i>
+                  訂閱
+                </a>
+                <a ng-click="select(drama.id)" class="tab-item" href="#">
+                  <i class="icon ion-monitor"></i>
+                  觀看
+                </a>
+              </div>
+              </div>
+            </div>
+          </content>
+        </pane>
+        <side-menu side="left">
+          <header class="bar bar-header bar-dark" fade-header>
+            <h1 class="title">功能選單</h1>
+          </header>
+          <content has-header="true">
+            <ul class="list">
+              <a href="#" ng-click="new();" class="item" >
+                <i class="icon ion-flash"></i>
+                最新
+              </a>
+              <a href="#" ng-click="hot();" class="item" >
+                <i class="icon ion-heart"></i>
+                熱門
+              </a>
+              <a href="#" ng-click="tw();" class="item" >
+                <i class="icon ion-navicon-round"></i>
+                台灣
+              </a>
+              <a href="#" ng-click="ch();" class="item" >
+                <i class="icon ion-navicon-round"></i>
+                中國
+              </a>
+              <a href="#" ng-click="kr();"class="item" >
+                <i class="icon ion-navicon-round"></i>
+                韓國
+              </a>
+              <a href="#" ng-click="jp();" class="item" >
+                <i class="icon ion-navicon-round"></i>
+                日本
+              </a>
+              <a href="#" class="item" >
+                <i class="icon ion-gear-b"></i>
+                設定
+              </a>
+              <a href="#" class="item" >
+                <i class="icon ion-information-circled"></i>
+                關於
+              </a>
+            </ul>
+          </content>
+        </side-menu>
+        <side-menu side="right">
+          <header class="bar bar-header bar-dark">
+            <h1 class="title">節目列表 </h1>
+          </header>
+          <content>
+            <ul class="list">
+              <a href="#" class="item" >
+                {{selectDrama.name}}
+              </a>
+              <div ng-repeat="eps in selectDrama.eps_num_str">
+              <a href="#" class="item" ng-click="link(eps);">
+                <i class="icon ion-social-youtube-outline"></i>
+                第 {{eps}} 集
+              </a>
+            </div>
+            </ul>
+          </content>
+        </side-menu>
+      </side-menus>
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+</html>
+
